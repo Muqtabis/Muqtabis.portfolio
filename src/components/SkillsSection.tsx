@@ -3,40 +3,38 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const skillCategories = [
   {
-    name: 'Frontend',
+    name: 'Languages',
     skills: [
-      { name: 'React', level: 90 },
-      { name: 'TypeScript', level: 85 },
-      { name: 'Next.js', level: 80 },
-      { name: 'Tailwind CSS', level: 95 },
-      { name: 'HTML/CSS', level: 95 },
+      { name: 'JavaScript', level: 90 },
+      { name: 'C/C++', level: 85 },
+      { name: 'Java', level: 80 },
+      { name: 'HTML/CSS', level: 90 },
     ],
   },
   {
-    name: 'Backend',
+    name: 'Web Stack',
     skills: [
+      { name: 'React.js', level: 90 },
       { name: 'Node.js', level: 85 },
-      { name: 'Python', level: 80 },
-      { name: 'Express', level: 85 },
-      { name: 'PostgreSQL', level: 75 },
-      { name: 'MongoDB', level: 80 },
+      { name: 'Express.js', level: 85 },
+      { name: 'MongoDB', level: 85 },
+      { name: 'REST API', level: 90 },
     ],
   },
   {
     name: 'Tools',
     skills: [
-      { name: 'Git', level: 90 },
-      { name: 'Docker', level: 70 },
-      { name: 'AWS', level: 65 },
-      { name: 'Linux', level: 75 },
+      { name: 'Git/GitHub', level: 90 },
       { name: 'VS Code', level: 95 },
+      { name: 'Vite', level: 85 },
+      { name: 'Cloudinary', level: 75 },
     ],
   },
 ];
 
 const techIcons = [
-  'React', 'TypeScript', 'JavaScript', 'Python', 'Node.js', 'Git',
-  'Docker', 'PostgreSQL', 'MongoDB', 'AWS', 'Tailwind', 'Next.js'
+  'React', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 'C++',
+  'Java', 'Git', 'REST API', 'Vite', 'Cloudinary', 'HTML/CSS'
 ];
 
 export function SkillsSection() {

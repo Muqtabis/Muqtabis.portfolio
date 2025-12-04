@@ -4,55 +4,29 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const projects = [
   {
-    title: 'Project One',
-    description: 'A full-stack web application built with React and Node.js. Features include user authentication, real-time updates, and a responsive design.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
-    github: '#',
+    title: 'TheAge.Edu',
+    description: 'A comprehensive educational platform featuring a secure Admin Dashboard for managing student records, faculty directories, and academic results. Includes a custom CMS for real-time updates of school news, events, and galleries, with robust authentication securing sensitive institutional data.',
+    tags: ['Node.js', 'React+Vite', 'Express.js', 'MongoDB', 'Cloudinary'],
+    github: 'https://github.com/Muqtabis',
     live: '#',
     featured: true,
+    period: '08 2025 – 11 2025',
   },
   {
-    title: 'Project Two',
-    description: 'Machine learning model for image classification using TensorFlow. Achieved 95% accuracy on the test dataset.',
-    tags: ['Python', 'TensorFlow', 'OpenCV', 'Flask'],
-    github: '#',
+    title: 'Dream.journal',
+    description: 'A data-driven dream journaling platform with a full-stack solution enabling users to securely record, store, and retrieve personal dream entries via a RESTful API. Features a dynamic Analytics Dashboard that visualizes "Dream Probability" and historical trends with graphical insights.',
+    tags: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
+    github: 'https://github.com/Muqtabis',
     live: '#',
     featured: true,
-  },
-  {
-    title: 'Project Three',
-    description: 'Mobile-first e-commerce platform with payment integration and inventory management.',
-    tags: ['Next.js', 'Stripe', 'PostgreSQL', 'Tailwind'],
-    github: '#',
-    live: '#',
-    featured: true,
-  },
-  {
-    title: 'CLI Tool',
-    description: 'Command-line tool for automating development workflows.',
-    tags: ['Go', 'Cobra'],
-    github: '#',
-  },
-  {
-    title: 'API Service',
-    description: 'RESTful API service with comprehensive documentation.',
-    tags: ['Express', 'Swagger'],
-    github: '#',
-  },
-  {
-    title: 'Chrome Extension',
-    description: 'Browser extension for productivity enhancement.',
-    tags: ['JavaScript', 'Chrome API'],
-    github: '#',
+    period: '05 2025 – 10 2025',
   },
 ];
 
 export function ProjectsSection() {
   const featuredProjects = projects.filter((p) => p.featured);
-  const otherProjects = projects.filter((p) => !p.featured);
   
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { ref: otherRef, isVisible: otherVisible } = useScrollAnimation();
 
   return (
     <section id="projects" className="py-24 bg-secondary/30">
@@ -70,68 +44,25 @@ export function ProjectsSection() {
         </div>
 
         {/* Featured Projects */}
-        <div className="space-y-24 mb-24">
+        <div className="space-y-24 mb-12">
           {featuredProjects.map((project, index) => (
             <FeaturedProject key={project.title} project={project} index={index} />
           ))}
         </div>
 
-        {/* Other Projects Grid */}
-        <div 
-          ref={otherRef}
-          className={`text-center mb-8 transition-all duration-700 ${
-            otherVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <h3 className="text-xl font-bold">Other Noteworthy Projects</h3>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherProjects.map((project, index) => (
-            <div
-              key={project.title}
-              className={`glass-card p-6 rounded-xl hover-lift group transition-all duration-500 ${
-                otherVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <Folder className="h-10 w-10 text-primary" />
-                <div className="flex gap-3">
-                  <a href={project.github} className="text-muted-foreground hover:text-primary transition-colors">
-                    <Github className="h-5 w-5" />
-                  </a>
-                  {project.live && (
-                    <a href={project.live} className="text-muted-foreground hover:text-primary transition-colors">
-                      <ExternalLink className="h-5 w-5" />
-                    </a>
-                  )}
-                </div>
-              </div>
-              <h4 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                {project.title}
-              </h4>
-              <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="text-xs font-mono text-muted-foreground">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
         <div className="text-center mt-12">
-          <Button variant="heroOutline" size="lg">
-            <Github className="h-5 w-5" />
-            View More on GitHub
+          <Button variant="heroOutline" size="lg" asChild>
+            <a href="https://github.com/Muqtabis" target="_blank" rel="noopener noreferrer">
+              <Github className="h-5 w-5" />
+              View More on GitHub
+            </a>
           </Button>
         </div>
       </div>
     </section>
   );
 }
+
 
 function FeaturedProject({ project, index }: { project: typeof projects[0]; index: number }) {
   const { ref, isVisible } = useScrollAnimation();

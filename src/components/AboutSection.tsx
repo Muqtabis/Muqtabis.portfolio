@@ -67,9 +67,9 @@ export function AboutSection() {
             }`}
           >
             <p className="text-muted-foreground text-lg leading-relaxed">
-              I'm a passionate Computer Science student with a love for creating elegant, 
-              efficient, and user-friendly applications. Currently exploring the realms of 
-              full-stack development, cloud computing, and artificial intelligence.
+              Final-year Bachelor of Engineering student in Computer Science and Design, equipped with 
+              strong skills in web development, software design, and database management. I leverage my 
+              technical expertise in modern frameworks to build innovative, scalable solutions.
             </p>
 
             <div className="grid grid-cols-2 gap-4">
