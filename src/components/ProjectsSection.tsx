@@ -1,25 +1,29 @@
-import { ExternalLink, Github, Folder } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import theageEduThumbnail from '@/assets/theage-edu-thumbnail.png';
+import dreamJournalThumbnail from '@/assets/dream-journal-thumbnail.png';
 
 const projects = [
   {
     title: 'TheAge.Edu',
     description: 'A comprehensive educational platform featuring a secure Admin Dashboard for managing student records, faculty directories, and academic results. Includes a custom CMS for real-time updates of school news, events, and galleries, with robust authentication securing sensitive institutional data.',
     tags: ['Node.js', 'React+Vite', 'Express.js', 'MongoDB', 'Cloudinary'],
-    github: 'https://github.com/Muqtabis',
+    github: 'https://github.com/Muqtabis/theage.edu',
     live: '#',
     featured: true,
     period: '08 2025 – 11 2025',
+    thumbnail: theageEduThumbnail,
   },
   {
     title: 'Dream.journal',
     description: 'A data-driven dream journaling platform with a full-stack solution enabling users to securely record, store, and retrieve personal dream entries via a RESTful API. Features a dynamic Analytics Dashboard that visualizes "Dream Probability" and historical trends with graphical insights.',
     tags: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
-    github: 'https://github.com/Muqtabis',
+    github: 'https://github.com/Muqtabis/my-dream-journal',
     live: '#',
     featured: true,
     period: '05 2025 – 10 2025',
+    thumbnail: dreamJournalThumbnail,
   },
 ];
 
@@ -86,9 +90,11 @@ function FeaturedProject({ project, index }: { project: typeof projects[0]; inde
         <div className="relative group">
           <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-primary/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div className="relative aspect-video bg-card rounded-xl overflow-hidden border border-border">
-            <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary flex items-center justify-center">
-              <Folder className="h-20 w-20 text-primary/30" />
-            </div>
+            <img 
+              src={project.thumbnail} 
+              alt={`${project.title} preview`}
+              className="w-full h-full object-cover object-top"
+            />
             <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
               <a href={project.github} className="p-3 bg-card rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
                 <Github className="h-5 w-5" />
