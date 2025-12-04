@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import profilePhoto from '@/assets/profile-photo.jpeg';
 
 const roles = ['Software Engineer', 'Full Stack Developer', 'CS Student', 'Problem Solver'];
 
@@ -50,9 +51,9 @@ export function HeroSection() {
                 &gt; Hello World! I am
               </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-                <span className="text-foreground">Your</span>
+                <span className="text-foreground">Muqtabis</span>
                 <br />
-                <span className="text-gradient">Name Here</span>
+                <span className="text-gradient">Ahmar</span>
               </h1>
             </div>
 
@@ -84,19 +85,23 @@ export function HeroSection() {
             {/* Social Links */}
             <div className="flex items-center gap-4 pt-4">
               <a
-                href="#"
+                href="https://github.com/Muqtabis"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:-translate-y-1"
               >
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/muqtabis-ahmar/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:-translate-y-1"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="mailto:muqtabis.gbr@gmail.com"
                 className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:-translate-y-1"
               >
                 <Mail className="h-5 w-5" />
@@ -116,11 +121,13 @@ export function HeroSection() {
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/5 rounded-full blur-3xl animate-pulse-glow"></div>
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-primary/50 rounded-full opacity-20"></div>
               
-              {/* Profile image placeholder */}
+              {/* Profile image */}
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 glass-card">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary flex items-center justify-center">
-                  <span className="text-6xl md:text-8xl font-bold text-primary/40">?</span>
-                </div>
+                <img 
+                  src={profilePhoto} 
+                  alt="Muqtabis Ahmar" 
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
 
               {/* Floating badges */}

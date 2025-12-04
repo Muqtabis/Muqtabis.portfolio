@@ -1,10 +1,9 @@
-import { Github, Linkedin, Mail, Twitter, Heart, Terminal } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart, Terminal } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Github, href: '#', label: 'GitHub' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Mail, href: '#', label: 'Email' },
+  { icon: Github, href: 'https://github.com/Muqtabis', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/muqtabis-ahmar/', label: 'LinkedIn' },
+  { icon: Mail, href: 'mailto:muqtabis.gbr@gmail.com', label: 'Email' },
 ];
 
 export function Footer() {
@@ -40,7 +39,7 @@ export function Footer() {
               Built with <Heart className="h-4 w-4 text-destructive fill-destructive" /> using React & Tailwind
             </p>
             <p className="mt-2">
-              &copy; {currentYear} Your Name. All rights reserved.
+              &copy; {currentYear} Muqtabis Ahmar. All rights reserved.
             </p>
           </div>
 

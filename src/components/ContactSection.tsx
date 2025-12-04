@@ -28,9 +28,9 @@ export function ContactSection() {
   };
 
   const contactInfo = [
-    { icon: Mail, title: 'Email', value: 'your.email@example.com', href: 'mailto:your.email@example.com' },
-    { icon: MapPin, title: 'Location', value: 'Your City, Country' },
-    { icon: Phone, title: 'Phone', value: '+1 (234) 567-8900' },
+    { icon: Mail, title: 'Email', value: 'muqtabis.gbr@gmail.com', href: 'mailto:muqtabis.gbr@gmail.com' },
+    { icon: MapPin, title: 'Location', value: 'Bengaluru, India' },
+    { icon: Phone, title: 'Phone', value: '+91 8431039329' },
   ];
 
   return (
