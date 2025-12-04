@@ -40,13 +40,13 @@ export function AboutSection() {
                 <span className="text-primary">const</span>{' '}
                 <span className="text-foreground">developer</span> = {'{'}
                 {'\n'}  <span className="text-muted-foreground">name:</span>{' '}
-                <span className="text-accent-foreground">"Your Name"</span>,
+                <span className="text-accent-foreground">"Muqtabis Ahmar"</span>,
                 {'\n'}  <span className="text-muted-foreground">title:</span>{' '}
                 <span className="text-accent-foreground">"Software Engineer"</span>,
                 {'\n'}  <span className="text-muted-foreground">education:</span>{' '}
-                <span className="text-accent-foreground">"B.S. Computer Science"</span>,
+                <span className="text-accent-foreground">"B.E. Computer Science"</span>,
                 {'\n'}  <span className="text-muted-foreground">location:</span>{' '}
-                <span className="text-accent-foreground">"Your City, Country"</span>,
+                <span className="text-accent-foreground">"Bengaluru, India"</span>,
                 {'\n'}  <span className="text-muted-foreground">interests:</span> [
                 {'\n'}    <span className="text-accent-foreground">"Web Development"</span>,
                 {'\n'}    <span className="text-accent-foreground">"Machine Learning"</span>,
@@ -74,10 +74,10 @@ export function AboutSection() {
 
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: Code2, title: 'Developer', subtitle: '3+ years coding' },
-                { icon: GraduationCap, title: 'Student', subtitle: 'CS Major' },
-                { icon: MapPin, title: 'Location', subtitle: 'Your City' },
-                { icon: Calendar, title: 'Graduating', subtitle: '2025' },
+                { icon: Code2, title: 'Developer', subtitle: 'Software Engineer' },
+                { icon: GraduationCap, title: 'Student', subtitle: 'B.E. CS' },
+                { icon: MapPin, title: 'Location', subtitle: 'Bengaluru, India' },
+                { icon: Calendar, title: 'Graduating', subtitle: '2026' },
               ].map((item, index) => (
                 <div 
                   key={item.title}
