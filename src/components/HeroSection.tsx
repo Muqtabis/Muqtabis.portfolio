@@ -64,15 +64,17 @@ export function HeroSection() {
             </div>
 
             <p className="text-muted-foreground text-lg max-w-lg leading-relaxed">
-              A passionate computer science student crafting elegant solutions to complex problems. 
-              I love building scalable applications and exploring cutting-edge technologies.
+              Final-year B.E. Computer Science student with strong skills in web development, 
+              software design, and database management. Building scalable, high-quality solutions with modern frameworks.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
-              <Button variant="hero" size="lg">
-                <Download className="h-5 w-5" />
-                Download Resume
+              <Button variant="hero" size="lg" asChild>
+                <a href="/Muqtabis_Resume.pdf" download>
+                  <Download className="h-5 w-5" />
+                  Download Resume
+                </a>
               </Button>
               <Button variant="heroOutline" size="lg" asChild>
                 <a href="#projects">
