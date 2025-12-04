@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const roles = ['Software Engineer', 'Full Stack Developer', 'CS Student', 'Problem Solver'];
 
@@ -8,6 +9,8 @@ export function HeroSection() {
   const [currentRole, setCurrentRole] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const { ref: textRef, isVisible: textVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: imageRef, isVisible: imageVisible } = useScrollAnimation({ threshold: 0.2 });
 
   useEffect(() => {
     const role = roles[currentRole];
@@ -36,7 +39,12 @@ export function HeroSection() {
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
-          <div className="space-y-8 animate-fade-up">
+          <div 
+            ref={textRef}
+            className={`space-y-8 transition-all duration-1000 ${
+              textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <div className="space-y-2">
               <p className="font-mono text-primary text-sm md:text-base">
                 &gt; Hello World! I am
@@ -97,7 +105,12 @@ export function HeroSection() {
           </div>
 
           {/* Profile Image */}
-          <div className="relative flex justify-center lg:justify-end animate-fade-up stagger-2">
+          <div 
+            ref={imageRef}
+            className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${
+              imageVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'
+            }`}
+          >
             <div className="relative">
               {/* Decorative elements */}
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/5 rounded-full blur-3xl animate-pulse-glow"></div>

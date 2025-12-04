@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Send, Mail, MapPin, Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export function ContactSection() {
   const { toast } = useToast();
@@ -12,6 +13,10 @@ export function ContactSection() {
     email: '',
     message: '',
   });
+
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: infoRef, isVisible: infoVisible } = useScrollAnimation();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,10 +27,21 @@ export function ContactSection() {
     setFormData({ name: '', email: '', message: '' });
   };
 
+  const contactInfo = [
+    { icon: Mail, title: 'Email', value: 'your.email@example.com', href: 'mailto:your.email@example.com' },
+    { icon: MapPin, title: 'Location', value: 'Your City, Country' },
+    { icon: Phone, title: 'Phone', value: '+1 (234) 567-8900' },
+  ];
+
   return (
     <section id="contact" className="py-24 bg-secondary/30">
       <div className="section-container">
-        <div className="text-center mb-16 animate-fade-up">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <span className="font-mono text-primary text-sm">// Get In Touch</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">
             Let's <span className="text-gradient">Connect</span>
@@ -38,47 +54,40 @@ export function ContactSection() {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
-          <div className="space-y-8 animate-slide-in-left">
-            <div className="glass-card p-6 rounded-xl hover-lift">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-accent rounded-lg">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-1">Email</h4>
-                  <a href="mailto:your.email@example.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    your.email@example.com
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="glass-card p-6 rounded-xl hover-lift">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-accent rounded-lg">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-1">Location</h4>
-                  <p className="text-muted-foreground">Your City, Country</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="glass-card p-6 rounded-xl hover-lift">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-accent rounded-lg">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-1">Phone</h4>
-                  <p className="text-muted-foreground">+1 (234) 567-8900</p>
+          <div ref={infoRef} className="space-y-8">
+            {contactInfo.map((item, index) => (
+              <div 
+                key={item.title}
+                className={`glass-card p-6 rounded-xl hover-lift transition-all duration-500 ${
+                  infoVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-accent rounded-lg">
+                    <item.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">{item.title}</h4>
+                    {item.href ? (
+                      <a href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="text-muted-foreground">{item.value}</p>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
 
             {/* Terminal style message */}
-            <div className="code-block">
+            <div 
+              className={`code-block transition-all duration-500 ${
+                infoVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+              }`}
+              style={{ transitionDelay: '300ms' }}
+            >
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-3 h-3 rounded-full bg-destructive"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -99,7 +108,12 @@ export function ContactSection() {
           </div>
 
           {/* Contact Form */}
-          <div className="animate-slide-in-right">
+          <div 
+            ref={formRef}
+            className={`transition-all duration-700 ${
+              formVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+            }`}
+          >
             <form onSubmit={handleSubmit} className="glass-card p-8 rounded-xl space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
