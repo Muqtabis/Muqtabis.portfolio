@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const skillCategories = [
   {
@@ -40,11 +41,19 @@ const techIcons = [
 
 export function SkillsSection() {
   const [activeCategory, setActiveCategory] = useState(0);
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: tabsRef, isVisible: tabsVisible } = useScrollAnimation();
+  const { ref: skillsRef, isVisible: skillsVisible } = useScrollAnimation();
 
   return (
     <section id="skills" className="py-24">
       <div className="section-container">
-        <div className="text-center mb-16 animate-fade-up">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <span className="font-mono text-primary text-sm">// Skills & Technologies</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">
             My <span className="text-gradient">Tech Stack</span>
@@ -66,7 +75,12 @@ export function SkillsSection() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex justify-center gap-4 mb-12 flex-wrap">
+        <div 
+          ref={tabsRef}
+          className={`flex justify-center gap-4 mb-12 flex-wrap transition-all duration-700 ${
+            tabsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           {skillCategories.map((category, index) => (
             <button
               key={category.name}
@@ -83,9 +97,18 @@ export function SkillsSection() {
         </div>
 
         {/* Skills Grid */}
-        <div className="max-w-3xl mx-auto space-y-6 animate-fade-up">
+        <div 
+          ref={skillsRef}
+          className="max-w-3xl mx-auto space-y-6"
+        >
           {skillCategories[activeCategory].skills.map((skill, index) => (
-            <div key={skill.name} className="space-y-2" style={{ animationDelay: `${index * 0.1}s` }}>
+            <div 
+              key={skill.name} 
+              className={`space-y-2 transition-all duration-500 ${
+                skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
               <div className="flex justify-between items-center">
                 <span className="font-medium">{skill.name}</span>
                 <span className="font-mono text-sm text-muted-foreground">{skill.level}%</span>
@@ -93,7 +116,10 @@ export function SkillsSection() {
               <div className="h-3 bg-secondary rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full transition-all duration-1000 ease-out"
-                  style={{ width: `${skill.level}%` }}
+                  style={{ 
+                    width: skillsVisible ? `${skill.level}%` : '0%',
+                    transitionDelay: `${index * 100 + 200}ms`
+                  }}
                 ></div>
               </div>
             </div>

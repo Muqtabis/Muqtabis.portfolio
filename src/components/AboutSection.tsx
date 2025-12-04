@@ -1,10 +1,20 @@
 import { Code2, GraduationCap, MapPin, Calendar } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export function AboutSection() {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: codeRef, isVisible: codeVisible } = useScrollAnimation();
+  const { ref: infoRef, isVisible: infoVisible } = useScrollAnimation();
+
   return (
     <section id="about" className="py-24 bg-secondary/30">
       <div className="section-container">
-        <div className="text-center mb-16 animate-fade-up">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <span className="font-mono text-primary text-sm">// About Me</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">
             Get to Know <span className="text-gradient">Me Better</span>
@@ -13,7 +23,12 @@ export function AboutSection() {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Code Block Style About */}
-          <div className="code-block animate-slide-in-left">
+          <div 
+            ref={codeRef}
+            className={`code-block transition-all duration-700 delay-100 ${
+              codeVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+            }`}
+          >
             <div className="flex items-center gap-2 mb-4">
               <div className="w-3 h-3 rounded-full bg-destructive"></div>
               <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -45,7 +60,12 @@ export function AboutSection() {
           </div>
 
           {/* Info Cards */}
-          <div className="space-y-6 animate-slide-in-right">
+          <div 
+            ref={infoRef}
+            className={`space-y-6 transition-all duration-700 delay-200 ${
+              infoVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+            }`}
+          >
             <p className="text-muted-foreground text-lg leading-relaxed">
               I'm a passionate Computer Science student with a love for creating elegant, 
               efficient, and user-friendly applications. Currently exploring the realms of 
@@ -53,26 +73,22 @@ export function AboutSection() {
             </p>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="glass-card p-4 rounded-xl hover-lift">
-                <Code2 className="h-8 w-8 text-primary mb-2" />
-                <h4 className="font-semibold">Developer</h4>
-                <p className="text-sm text-muted-foreground">3+ years coding</p>
-              </div>
-              <div className="glass-card p-4 rounded-xl hover-lift">
-                <GraduationCap className="h-8 w-8 text-primary mb-2" />
-                <h4 className="font-semibold">Student</h4>
-                <p className="text-sm text-muted-foreground">CS Major</p>
-              </div>
-              <div className="glass-card p-4 rounded-xl hover-lift">
-                <MapPin className="h-8 w-8 text-primary mb-2" />
-                <h4 className="font-semibold">Location</h4>
-                <p className="text-sm text-muted-foreground">Your City</p>
-              </div>
-              <div className="glass-card p-4 rounded-xl hover-lift">
-                <Calendar className="h-8 w-8 text-primary mb-2" />
-                <h4 className="font-semibold">Graduating</h4>
-                <p className="text-sm text-muted-foreground">2025</p>
-              </div>
+              {[
+                { icon: Code2, title: 'Developer', subtitle: '3+ years coding' },
+                { icon: GraduationCap, title: 'Student', subtitle: 'CS Major' },
+                { icon: MapPin, title: 'Location', subtitle: 'Your City' },
+                { icon: Calendar, title: 'Graduating', subtitle: '2025' },
+              ].map((item, index) => (
+                <div 
+                  key={item.title}
+                  className="glass-card p-4 rounded-xl hover-lift transition-all duration-500"
+                  style={{ transitionDelay: `${300 + index * 100}ms`, opacity: infoVisible ? 1 : 0, transform: infoVisible ? 'translateY(0)' : 'translateY(20px)' }}
+                >
+                  <item.icon className="h-8 w-8 text-primary mb-2" />
+                  <h4 className="font-semibold">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground">{item.subtitle}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
